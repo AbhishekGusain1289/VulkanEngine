@@ -1,0 +1,1 @@
+In the External Libraries folder download glfw and glm and and paste them in there and change the folder name of "glfw-3.4.bin.WIN64" to just "glfw"
