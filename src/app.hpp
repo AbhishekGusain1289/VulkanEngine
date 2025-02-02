@@ -24,6 +24,7 @@ class App{
         void initVulkan();
         void mainLoop();
         void createInstance();
+        void checkExtensionSupport();
 
 
         GLFWwindow* window;

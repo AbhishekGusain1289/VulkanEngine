@@ -1,5 +1,7 @@
 #include "app.hpp"
 
+
+#include <vector>
 App::~App(){
     vkDestroyInstance(instance, nullptr);
     glfwDestroyWindow(window);
@@ -72,4 +74,32 @@ void App::createInstance(){
         throw std::runtime_error("Failed to create instance");
     }
     
+}
+
+void App::checkExtensionSupport(){
+    uint32_t extensionCount = 0;
+    vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
+    std::vector<VkExtensionProperties> extensions(extensionCount);
+    vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data());
+    uint32_t glfwExtensionCount = 0;
+    const char** glfwExtensions;
+
+    glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
+
+    for (uint32_t i = 0; i < glfwExtensionCount; ++i) {
+        bool extensionFound = false;
+        for (const auto& extension : extensions) {
+            if (strcmp(glfwExtensions[i], extension.extensionName) == 0) {
+                extensionFound = true;
+                break;
+            }
+        }
+        if (extensionFound) {
+            std::cout << "Supported: " << glfwExtensions[i] << std::endl;
+        } else {
+            std::cout << "Not Supported: " << glfwExtensions[i] << std::endl;
+        }
+    }
+
+
 }
