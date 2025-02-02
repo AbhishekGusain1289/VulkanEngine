@@ -10,4 +10,11 @@ SET crt=/MD
 
 echo "Building Main..."
 
-cl /EHsc %includes% %defines% %crt% src\main.cpp %links%
+cl /EHsc /Z7 /Fe"main" %includes% %defines% %crt% src/*.cpp %links%
+
+echo "Cleaning up intermediate files..."
+del /Q *.ilk
+del /Q *.obj
+del /Q *.pdb
+
+echo "Build and cleanup complete."
