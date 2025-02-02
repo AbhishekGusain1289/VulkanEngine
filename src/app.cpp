@@ -9,7 +9,6 @@ void App::run(){
     initWindow();
     initVulkan();
     mainLoop();
-    cleanup();
 }
 void App::initWindow(){
     glfwInit();
