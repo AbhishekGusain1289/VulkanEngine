@@ -17,11 +17,13 @@ class App{
         const uint32_t WIDTH = 800;
         const uint32_t HEIGHT = 600;
 
+        VkInstance instance;
 
 
         void initWindow();
         void initVulkan();
         void mainLoop();
+        void createInstance();
 
 
         GLFWwindow* window;
